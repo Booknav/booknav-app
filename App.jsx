@@ -1,6 +1,6 @@
 import React from 'react';
 import * as eva from '@eva-design/eva';
-import { ApplicationProvider, Layout, Text } from '@ui-kitten/components';
+import { ApplicationProvider } from '@ui-kitten/components';
 import theme from './theme';
 import HomeScreen from './src/Home/Home';
 
