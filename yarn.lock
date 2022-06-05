@@ -2308,6 +2308,19 @@
   "resolved" "https://registry.npmjs.org/atob/-/atob-2.1.2.tgz"
   "version" "2.1.2"
 
+"axios-auth-refresh@^3.3.1":
+  "integrity" "sha512-OSQocChF+SHtl2Erp35LxsWtapvmeJH2K+kHDyslZJbuzhzbgnanROwflNN0m6dBoLEQWL5V2KsmRGamkWd9JA=="
+  "resolved" "https://registry.npmjs.org/axios-auth-refresh/-/axios-auth-refresh-3.3.1.tgz"
+  "version" "3.3.1"
+
+"axios@^0.27.2", "axios@>= 0.18 < 0.19.0 || >= 0.19.1":
+  "integrity" "sha512-t+yRIyySRTp/wua5xEr+z1q60QmLq8ABsS5O9Me1AsE5dfKqgnCFzwiCZZ/cGNd1lq4/7akDWMxdhVlucjmnOQ=="
+  "resolved" "https://registry.npmjs.org/axios/-/axios-0.27.2.tgz"
+  "version" "0.27.2"
+  dependencies:
+    "follow-redirects" "^1.14.9"
+    "form-data" "^4.0.0"
+
 "babel-core@^7.0.0-bridge.0":
   "integrity" "sha512-poPX9mZH/5CSanm50Q+1toVci6pv5KSRv/5TWCwtzQS5XEwn40BcCrgIeMFWP9CKKIniKXNxoIOnOq4VVlGXhg=="
   "resolved" "https://registry.npmjs.org/babel-core/-/babel-core-7.0.0-bridge.0.tgz"
@@ -3902,6 +3915,11 @@
   "resolved" "https://registry.npmjs.org/flow-parser/-/flow-parser-0.179.0.tgz"
   "version" "0.179.0"
 
+"follow-redirects@^1.14.9":
+  "integrity" "sha512-yLAMQs+k0b2m7cVxpS1VKJVvoz7SS9Td1zss3XRwXj+ZDH00RJgnuLx7E44wx02kQLrdM3aOOy+FpzS7+8OizA=="
+  "resolved" "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.15.1.tgz"
+  "version" "1.15.1"
+
 "for-in@^1.0.2":
   "integrity" "sha512-7EwmXrOjyL+ChxMhmG5lnW9MPt1aIeZEwKhQzoBUdTV0N3zuwWDZYVJatDvZ2OyzPUvdIAZDsCetk3coyMfcnQ=="
   "resolved" "https://registry.npmjs.org/for-in/-/for-in-1.0.2.tgz"
@@ -3911,6 +3929,15 @@
   "integrity" "sha512-RHkBKtLWUVwd7SqRIvCZMEvAMoGUp0XU+seQiZejj0COz3RI3hWP4sCv3gZWWLjJTd7rGwcsF5eKZGii0r/hbg=="
   "resolved" "https://registry.npmjs.org/form-data/-/form-data-3.0.1.tgz"
   "version" "3.0.1"
+  dependencies:
+    "asynckit" "^0.4.0"
+    "combined-stream" "^1.0.8"
+    "mime-types" "^2.1.12"
+
+"form-data@^4.0.0":
+  "integrity" "sha512-ETEklSGi5t0QMZuiXoA/Q6vcnxcLQP5vdugSpuAyi6SVGi2clPPp+xgEhuMaHC+zGgn31Kd235W35f7Hykkaww=="
+  "resolved" "https://registry.npmjs.org/form-data/-/form-data-4.0.0.tgz"
+  "version" "4.0.0"
   dependencies:
     "asynckit" "^0.4.0"
     "combined-stream" "^1.0.8"
@@ -6885,6 +6912,11 @@
     "invariant" "^2.2.4"
     "lodash" "^4.17.21"
     "prop-types" "^15.7.2"
+
+"react-native-keychain@^8.0.0":
+  "integrity" "sha512-c7Cs+YQN26UaQsRG1dmlXL7VL2ctnXwH/dl0IOMEQ7ZaL2NdN313YSAI8ZEZZjrVhNmPsyWEuvTFqWrdpItqQg=="
+  "resolved" "https://registry.npmjs.org/react-native-keychain/-/react-native-keychain-8.0.0.tgz"
+  "version" "8.0.0"
 
 "react-native-reanimated@^2.8.0":
   "integrity" "sha512-kJvf/UWLBMaGCs9X66MKq5zdFMgwx8D0nHnolbHR7s8ZnbLdb7TlQ/yuzIXqn/9wABfnwtNRI3CyaP1aHWMmZg=="
