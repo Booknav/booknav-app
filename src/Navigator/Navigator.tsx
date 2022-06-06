@@ -7,12 +7,14 @@ import { AuthContext, AuthProvider } from '../context/AuthContext';
 import * as Keychain from 'react-native-keychain';
 import { AxiosProvider } from '../context/AxiosContext';
 import { Loader } from '../Loader/Loader';
+import OtpScreen from '../screens/Otp/Otp';
 
 const { Navigator, Screen } = createStackNavigator();
 
 const HomeNavigator = () => (
   <Navigator screenOptions={{ headerShown: false }}>
     <Screen name="Home" component={LoginScreen} />
+    <Screen name="Otp" component={OtpScreen} />
     <Screen name="Details" component={DetailsScreen} />
   </Navigator>
 );

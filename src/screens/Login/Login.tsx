@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { SafeAreaView } from 'react-native';
 import { Divider, Icon, Input, Layout, TopNavigation, useTheme } from '@ui-kitten/components';
 import LoginStyles from './LoginStyles';
 import LoginSvg from '../../assets/undraw_access_account_re_8spm.svg';
+import { AxiosContext } from '../../context/AxiosContext';
 
 type Props = {
   navigation: any;
@@ -10,8 +11,12 @@ type Props = {
 
 export const LoginScreen = ({ navigation }: Props) => {
   const [phone, setPhone] = useState('');
+  const axiosContext = useContext(AxiosContext);
+
   const navigateDetails = () => {
-    navigation.navigate('Details');
+    axiosContext?.publicAxios
+      .post('/users/login', { phone })
+      .then(() => navigation.navigate('Details'));
   };
   const theme = useTheme();
 
