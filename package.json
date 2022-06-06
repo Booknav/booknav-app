@@ -8,6 +8,16 @@
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint-staged": {
+      "src/**/*.{ts,css,html}": [
+        "npm run lint"
+      ]
+    },
+    "husky": {
+      "hooks": {
+        "pre-commit": "lint-staged"
+      }
+    },
     "prepare": "husky install"
   },
   "dependencies": {
@@ -24,6 +34,7 @@
     "react-native": "0.64.1",
     "react-native-gesture-handler": "^2.4.2",
     "react-native-keychain": "^8.0.0",
+    "react-native-otp-textinput": "^0.0.9",
     "react-native-reanimated": "^2.8.0",
     "react-native-safe-area-context": "^3.4.0",
     "react-native-screens": "3.11",

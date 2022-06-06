@@ -5,7 +5,6 @@ import {LoginScreen} from '../screens/Login/Login';
 import {DetailsScreen} from '../screens/Details/Details';
 import {AuthContext, AuthProvider} from '../context/AuthContext';
 import * as Keychain from 'react-native-keychain';
-import {Text} from 'react-native';
 import {AxiosProvider} from '../context/AxiosContext';
 import {Loader} from '../Loader/Loader';
 
