@@ -12,7 +12,7 @@ const AxiosContext = createContext<AxiosContextType | null>(null);
 
 const AxiosProvider = ({children}: {children: React.ReactNode}) => {
   const authContext = useContext(AuthContext);
-  const baseURL = 'http://localhost:3000';
+  const baseURL = 'http://localhost:3000/api/v1';
 
   const authAxios = axios.create({
     baseURL,
@@ -44,7 +44,7 @@ const AxiosProvider = ({children}: {children: React.ReactNode}) => {
     const options = {
       method: 'POST',
       data,
-      url: baseURL + '/api/refreshToken',
+      url: baseURL + '/users/refresh',
     };
 
     return axios(options)
