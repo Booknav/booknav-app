@@ -1,7 +1,7 @@
-const {StyleService} = require('@ui-kitten/components');
+const { StyleService } = require('@ui-kitten/components');
 
 const LoginStyles = StyleService.create({
-  container: {flex: 1, justifyContent: 'center', alignItems: 'center'},
+  container: { flex: 1, justifyContent: 'center', alignItems: 'center' },
   header: {
     justifyContent: 'center',
     alignItems: 'center',

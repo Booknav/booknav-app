@@ -1,4 +1,4 @@
-import {dark} from '@eva-design/eva';
+import { dark } from '@eva-design/eva';
 
 const myTheme = {
   ...dark,

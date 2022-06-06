@@ -26,7 +26,7 @@ module.exports = MetroConfig.create(evaConfig, {
     babelTransformerPath: require.resolve('react-native-svg-transformer'),
   },
   resolver: {
-    assetExts: defaultConfig.resolver.assetExts.filter(ext => ext !== 'svg'),
+    assetExts: defaultConfig.resolver.assetExts.filter((ext) => ext !== 'svg'),
     sourceExts: [...defaultConfig.resolver.sourceExts, 'svg'],
   },
 });

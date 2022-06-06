@@ -1,6 +1,6 @@
-import React, {createContext, useContext} from 'react';
-import axios, {AxiosInstance} from 'axios';
-import {AuthContext} from './AuthContext';
+import React, { createContext, useContext } from 'react';
+import axios, { AxiosInstance } from 'axios';
+import { AuthContext } from './AuthContext';
 import createAuthRefreshInterceptor from 'axios-auth-refresh';
 import * as Keychain from 'react-native-keychain';
 
@@ -10,7 +10,7 @@ export type AxiosContextType = {
 };
 const AxiosContext = createContext<AxiosContextType | null>(null);
 
-const AxiosProvider = ({children}: {children: React.ReactNode}) => {
+const AxiosProvider = ({ children }: { children: React.ReactNode }) => {
   const authContext = useContext(AuthContext);
   const baseURL = 'http://localhost:3000/api/v1';
 
@@ -23,17 +23,18 @@ const AxiosProvider = ({children}: {children: React.ReactNode}) => {
   });
 
   authAxios.interceptors.request.use(
-    config => {
+    (config) => {
       if (!config?.headers?.Authorization) {
-        if (config.headers)
+        if (config.headers) {
           config.headers.Authorization = `Bearer ${authContext?.getAccessToken()}`;
+        }
       }
 
       return config;
     },
-    error => {
+    (error) => {
       return Promise.reject(error);
-    },
+    }
   );
 
   const refreshAuthLogic = (failedRequest: any) => {
@@ -48,7 +49,7 @@ const AxiosProvider = ({children}: {children: React.ReactNode}) => {
     };
 
     return axios(options)
-      .then(async tokenRefreshResponse => {
+      .then(async (tokenRefreshResponse) => {
         failedRequest.response.config.headers.Authorization =
           'Bearer ' + tokenRefreshResponse.data.accessToken;
 
@@ -62,12 +63,12 @@ const AxiosProvider = ({children}: {children: React.ReactNode}) => {
           JSON.stringify({
             accessToken: tokenRefreshResponse.data.accessToken,
             refreshToken: authContext?.authState.refreshToken,
-          }),
+          })
         );
 
         return Promise.resolve();
       })
-      .catch(e => {
+      .catch(() => {
         authContext?.setAuthState({
           ...authContext.authState,
           accessToken: null,
@@ -83,10 +84,11 @@ const AxiosProvider = ({children}: {children: React.ReactNode}) => {
       value={{
         authAxios,
         publicAxios,
-      }}>
+      }}
+    >
       {children}
     </AxiosContext.Provider>
   );
 };
 
-export {AxiosContext, AxiosProvider};
+export { AxiosContext, AxiosProvider };

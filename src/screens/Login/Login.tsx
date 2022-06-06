@@ -1,14 +1,6 @@
-import React, {useState} from 'react';
-import {SafeAreaView} from 'react-native';
-import {
-  Button,
-  Divider,
-  Icon,
-  Input,
-  Layout,
-  TopNavigation,
-  useTheme,
-} from '@ui-kitten/components';
+import React, { useState } from 'react';
+import { SafeAreaView } from 'react-native';
+import { Divider, Icon, Input, Layout, TopNavigation, useTheme } from '@ui-kitten/components';
 import LoginStyles from './LoginStyles';
 import LoginSvg from '../../assets/undraw_access_account_re_8spm.svg';
 
@@ -16,7 +8,7 @@ type Props = {
   navigation: any;
 };
 
-export const LoginScreen = ({navigation}: Props) => {
+export const LoginScreen = ({ navigation }: Props) => {
   const [phone, setPhone] = useState('');
   const navigateDetails = () => {
     navigation.navigate('Details');
@@ -24,7 +16,8 @@ export const LoginScreen = ({navigation}: Props) => {
   const theme = useTheme();
 
   return (
-    <SafeAreaView style={{flex: 1}}>
+    // eslint-disable-next-line react-native/no-inline-styles
+    <SafeAreaView style={{ flex: 1 }}>
       <TopNavigation title="Booknaav Login" alignment="center" />
       <Divider />
       <Layout style={LoginStyles.container}>
@@ -34,7 +27,7 @@ export const LoginScreen = ({navigation}: Props) => {
         <Input
           keyboardType="phone-pad"
           value={phone}
-          onChangeText={e => setPhone(e)}
+          onChangeText={(e) => setPhone(e)}
           maxLength={12}
           style={LoginStyles.input}
           placeholder="Enter your phone"

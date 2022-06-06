@@ -1,17 +1,17 @@
-import React, {useCallback, useContext, useEffect, useState} from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
-import {LoginScreen} from '../screens/Login/Login';
-import {DetailsScreen} from '../screens/Details/Details';
-import {AuthContext, AuthProvider} from '../context/AuthContext';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { LoginScreen } from '../screens/Login/Login';
+import { DetailsScreen } from '../screens/Details/Details';
+import { AuthContext, AuthProvider } from '../context/AuthContext';
 import * as Keychain from 'react-native-keychain';
-import {AxiosProvider} from '../context/AxiosContext';
-import {Loader} from '../Loader/Loader';
+import { AxiosProvider } from '../context/AxiosContext';
+import { Loader } from '../Loader/Loader';
 
-const {Navigator, Screen} = createStackNavigator();
+const { Navigator, Screen } = createStackNavigator();
 
 const HomeNavigator = () => (
-  <Navigator screenOptions={{headerShown: false}}>
+  <Navigator screenOptions={{ headerShown: false }}>
     <Screen name="Home" component={LoginScreen} />
     <Screen name="Details" component={DetailsScreen} />
   </Navigator>
@@ -41,6 +41,7 @@ export const AppNavigator = () => {
         authenticated: false,
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
