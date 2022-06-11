@@ -4,6 +4,7 @@ import { Divider, Icon, Input, Layout, TopNavigation, useTheme } from '@ui-kitte
 import LoginStyles from './LoginStyles';
 import LoginSvg from '../../assets/undraw_access_account_re_8spm.svg';
 import { AxiosContext } from '../../context/AxiosContext';
+import { LoginResponse } from '../../types';
 
 type Props = {
   navigation: any;
@@ -14,9 +15,15 @@ export const LoginScreen = ({ navigation }: Props) => {
   const axiosContext = useContext(AxiosContext);
 
   const navigateDetails = () => {
-    axiosContext?.publicAxios
-      .post('/users/login', { phone })
-      .then(() => navigation.navigate('Details'));
+    try {
+      axiosContext?.publicAxios
+        .post('/users/otp/', { phone })
+        .then((response: LoginResponse) =>
+          navigation.navigate('Details', { phone, hash: response.data.hash })
+        );
+    } catch (exception) {
+      console.log(exception);
+    }
   };
   const theme = useTheme();
 

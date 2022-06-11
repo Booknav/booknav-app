@@ -12,7 +12,7 @@ const AxiosContext = createContext<AxiosContextType | null>(null);
 
 const AxiosProvider = ({ children }: { children: React.ReactNode }) => {
   const authContext = useContext(AuthContext);
-  const baseURL = 'http://localhost:3000/api/v1';
+  const baseURL = 'http://172.24.72.15:3000/api/v1';
 
   const authAxios = axios.create({
     baseURL,

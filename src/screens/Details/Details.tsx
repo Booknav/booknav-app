@@ -4,26 +4,35 @@ import {
   Button,
   Divider,
   Icon,
+  Input,
   Layout,
   Text,
   TopNavigation,
   TopNavigationAction,
 } from '@ui-kitten/components';
-import OtpInputs from 'react-native-otp-inputs';
 import { AxiosContext } from '../../context/AxiosContext';
+import LoginStyles from '../Login/LoginStyles';
+import { AuthContext } from '../../context/AuthContext';
+import * as Keychain from 'react-native-keychain';
 
 type Props = {
   navigation: any;
-  phone: Number;
-  hash: String;
+  route: {
+    params: {
+      phone: string;
+      hash: string;
+    };
+  };
 };
 
 const BackIcon = (props: any) => <Icon {...props} name="arrow-back" />;
 
-export const DetailsScreen = ({ navigation, phone, hash }: Props) => {
-  const [otp, setOtp] = React.useState<number | null>(null);
+export const DetailsScreen = ({ navigation, route }: Props) => {
+  const [otp, setOtp] = React.useState('');
+  const { phone, hash } = route.params;
 
   const axiosContext = useContext(AxiosContext);
+  const authContext = useContext(AuthContext);
 
   const navigateBack = () => {
     navigation.goBack();
@@ -31,17 +40,35 @@ export const DetailsScreen = ({ navigation, phone, hash }: Props) => {
 
   const BackAction = () => <TopNavigationAction icon={BackIcon} onPress={navigateBack} />;
 
-  const handleChange = (code: string) => {
-    setOtp(parseFloat(code));
-  };
-
   const handleSubmit = () => {
     if (phone) {
-      axiosContext?.publicAxios.post('/users/verify', {
-        phone: phone,
-        hashCode: hash,
-        otp,
-      });
+      try {
+        axiosContext?.publicAxios
+          .post('/users/verify', {
+            phone: phone,
+            hash,
+            otp,
+          })
+          .then((response) => {
+            const { accessToken, refreshToken } = response.data;
+            if (accessToken) {
+              authContext?.setAuthState({
+                accessToken,
+                refreshToken,
+                authenticated: true,
+              });
+              Keychain.setGenericPassword(
+                'token',
+                JSON.stringify({
+                  accessToken,
+                  refreshToken,
+                })
+              );
+            }
+          });
+      } catch (e) {
+        console.log(e);
+      }
     }
   };
 
@@ -51,13 +78,21 @@ export const DetailsScreen = ({ navigation, phone, hash }: Props) => {
       <Divider />
       <Layout style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <Text category="h1">OTP</Text>
-        <OtpInputs
+        {/* <OtpInputs
           style={{ backgroundColor: 'blue', flexDirection: 'row' }}
           value={otp?.toString()}
           autofillFromClipboard={false}
           handleChange={(code) => handleChange(code)}
           numberOfInputs={6}
           keyboardType="numbers-and-punctuation"
+        /> */}
+        <Input
+          keyboardType="phone-pad"
+          value={otp}
+          onChangeText={(e) => setOtp(e)}
+          maxLength={12}
+          style={LoginStyles.input}
+          placeholder="Enter OTP"
         />
         <Button onPress={handleSubmit}>
           <Text>Submit</Text>
